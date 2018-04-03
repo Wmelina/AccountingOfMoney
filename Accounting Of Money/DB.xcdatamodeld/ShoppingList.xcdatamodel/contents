@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="ShoppingList">
+    <entity name="AccountList" representedClassName=".AccountList" elementID="AccountList" syncable="YES" codeGenerationType="class">
+        <attribute name="accountMoney" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accountName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accountOption" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="ShoppingList" representedClassName=".ShoppingList" syncable="YES" codeGenerationType="class">
+        <attribute name="listMoney" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ShoppingList" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="AccountList" positionX="-36" positionY="27" width="128" height="90"/>
+    </elements>
+</model>

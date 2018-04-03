@@ -10,6 +10,12 @@ import UIKit
 
 class ShoppingListTableViewCell: UITableViewCell {
 
+    @IBAction func pressAdd(_ sender: Any) {
+        
+        
+    }
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

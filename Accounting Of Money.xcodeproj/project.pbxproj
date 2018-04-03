@@ -19,8 +19,8 @@
 		98366472206D2878009D06B9 /* FundRaisingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98366471206D2878009D06B9 /* FundRaisingViewController.swift */; };
 		98366474206D2893009D06B9 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98366473206D2893009D06B9 /* ShoppingListViewController.swift */; };
 		98366479206D5E25009D06B9 /* AccountingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98366477206D5E25009D06B9 /* AccountingTableViewCell.swift */; };
-		98366480206D6529009D06B9 /* ShoppingListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836647F206D6529009D06B9 /* ShoppingListTableView.swift */; };
 		98366483206D654F009D06B9 /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98366481206D654F009D06B9 /* ShoppingListTableViewCell.swift */; };
+		98A14B582074209500EDF941 /* DB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98A14B562074209500EDF941 /* DB.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		98366471206D2878009D06B9 /* FundRaisingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundRaisingViewController.swift; sourceTree = "<group>"; };
 		98366473206D2893009D06B9 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		98366477206D5E25009D06B9 /* AccountingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountingTableViewCell.swift; sourceTree = "<group>"; };
-		9836647F206D6529009D06B9 /* ShoppingListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableView.swift; sourceTree = "<group>"; };
 		98366481206D654F009D06B9 /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		98A14B572074209500EDF941 /* ShoppingList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +114,13 @@
 				9801BB472072056D00D97807 /* Actions.swift */,
 				98366441206D1FEE009D06B9 /* AppDelegate.swift */,
 				98366445206D1FEE009D06B9 /* Main.storyboard */,
-				9836647F206D6529009D06B9 /* ShoppingListTableView.swift */,
 				98366481206D654F009D06B9 /* ShoppingListTableViewCell.swift */,
 				98366443206D1FEE009D06B9 /* MainViewController.swift */,
 				98366477206D5E25009D06B9 /* AccountingTableViewCell.swift */,
 				9836646F206D2865009D06B9 /* AccountingViewController.swift */,
 				98366471206D2878009D06B9 /* FundRaisingViewController.swift */,
 				98366473206D2893009D06B9 /* ShoppingListViewController.swift */,
+				98A14B562074209500EDF941 /* DB.xcdatamodeld */,
 				98366448206D1FEE009D06B9 /* Assets.xcassets */,
 				9836644A206D1FEE009D06B9 /* LaunchScreen.storyboard */,
 				9836644D206D1FEE009D06B9 /* Info.plist */,
@@ -283,8 +283,8 @@
 				98366444206D1FEE009D06B9 /* MainViewController.swift in Sources */,
 				98366470206D2865009D06B9 /* AccountingViewController.swift in Sources */,
 				98366474206D2893009D06B9 /* ShoppingListViewController.swift in Sources */,
+				98A14B582074209500EDF941 /* DB.xcdatamodeld in Sources */,
 				98366479206D5E25009D06B9 /* AccountingTableViewCell.swift in Sources */,
-				98366480206D6529009D06B9 /* ShoppingListTableView.swift in Sources */,
 				98366483206D654F009D06B9 /* ShoppingListTableViewCell.swift in Sources */,
 				9801BB482072056D00D97807 /* Actions.swift in Sources */,
 				98366442206D1FEE009D06B9 /* AppDelegate.swift in Sources */,
@@ -580,6 +580,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		98A14B562074209500EDF941 /* DB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				98A14B572074209500EDF941 /* ShoppingList.xcdatamodel */,
+			);
+			currentVersion = 98A14B572074209500EDF941 /* ShoppingList.xcdatamodel */;
+			path = DB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 98366436206D1FEE009D06B9 /* Project object */;
 }

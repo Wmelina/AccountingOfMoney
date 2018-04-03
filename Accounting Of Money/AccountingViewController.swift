@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AccountingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
@@ -28,13 +29,36 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
             if finalSum < 0 {
                 statusLabel.text = "you should work better!"
             } else {
-                statusLabel.text = "everything is ok"
+                statusLabel.text = "everything is ok."
             }
         }
     }
-    var arrayOfNames : Array<String> = ["Молоко"]
-    var arrayOfPrices : Array<String> = ["50,6"]
-    var arrayOfOperationSettings: Array<Int> = [1]
+    var arrayOfNames = [String]()
+    var arrayOfPrices = [String]()
+    var arrayOfOperationSettings = [Int]()
+    override func viewWillAppear(_ animated: Bool) {
+        //////////////////////
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AccountList")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let result = try managedContext.fetch(request)
+            
+            for data in result as! [NSManagedObject] {
+                let option = data.value(forKey: "accountOption") as! Int
+                let name = data.value(forKey: "accountName") as! String
+                let money = data.value(forKey: "accountMoney") as! String
+                arrayOfOperationSettings.append(option)
+                arrayOfNames.append(name)
+                arrayOfPrices.append(money)
+            }
+        } catch {
+            print("Failed")
+        }
+        /////////////////////
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,16 +80,18 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
         return arrayOfNames.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 50
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AccCell", for: indexPath) as! AccountingTableViewCell
-        cell.name.text? = arrayOfNames[indexPath.row]
-        cell.price.text? = arrayOfPrices[indexPath.row]
+        cell.name.text? = "  \(arrayOfNames[indexPath.row])"
+        
         if arrayOfOperationSettings[indexPath.row] == 1 {
             cell.backgroundColor = UIColor.red
+            cell.price.text? = "-\(arrayOfPrices[indexPath.row]) ₽"
         } else {
             cell.backgroundColor = UIColor.green
+            cell.price.text? = "+\(arrayOfPrices[indexPath.row]) ₽"
         }
         return cell
     }
@@ -80,6 +106,21 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
 
                 }
             }
+            
+            /////////////
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "AccountList", in: managedContext)
+            let newGood = NSManagedObject(entity: entity!, insertInto: managedContext)
+            newGood.setValue(name, forKey: "accountName")
+            newGood.setValue(price, forKey: "accountMoney")
+            newGood.setValue(operationIndex, forKey: "accountOption")
+                do {
+                    try managedContext.save()
+                } catch {
+                    print(error)
+                }
+            
             arrayOfPrices.append(price)
             arrayOfNames.append(name)
             arrayOfOperationSettings.append(operationIndex)
@@ -98,7 +139,7 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
         }
         
     }
-    
+}
     /*
      
      
@@ -111,4 +152,4 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
     }
     */
 
-}
+
