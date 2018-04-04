@@ -22,7 +22,6 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     var finalSum = 0.0 {
         didSet {
             finalSumLabel.text = "\(finalSum) ₽"
@@ -32,6 +31,9 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
                 statusLabel.text = "everything is ok."
             }
         }
+    }
+    class func addToFinalSum(price: Double) {
+        
     }
     var arrayOfNames = [String]()
     var arrayOfPrices = [String]()
@@ -57,18 +59,28 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
         } catch {
             print("Failed")
         }
-        /////////////////////
+        /////////////////////podgruzil finalSum
+        let requestz = NSFetchRequest<NSFetchRequestResult>(entityName: "Final")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        do {
+            let appDelegatez = UIApplication.shared.delegate as! AppDelegate
+            let managedContextz = appDelegatez.persistentContainer.viewContext
+            let resultz = try managedContextz.fetch(requestz)
+            
+            for data in resultz as! [NSManagedObject] {
+                let final = data.value(forKey: "final") as! Double
+                finalSum = final
+            }
+        } catch {
+            print("Failed")
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addTapGestureToHideKeyboard()
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func addItemToAccTableView(_ sender: Any) {
@@ -105,7 +117,20 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
                     finalSum -= priceDouble
 
                 }
+                let appDelegateZ = UIApplication.shared.delegate as! AppDelegate
+                let managedContextZ = appDelegateZ.persistentContainer.viewContext
+                let entityZ = NSEntityDescription.entity(forEntityName: "Final", in: managedContextZ)
+                let fff = NSManagedObject(entity: entityZ!, insertInto: managedContextZ)
+                fff.setValue(finalSum, forKey: "final")
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AccountList")
+                do {
+                    _ = try managedContextZ.fetch(request)
+                } catch {
+                    print(error)
+                }
+                
             }
+            
             
             /////////////
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -138,6 +163,10 @@ class AccountingViewController: UIViewController, UITableViewDataSource, UITable
             alert = nil
         }
         
+    }
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
+        view.addGestureRecognizer(tapGesture)
     }
 }
     /*
